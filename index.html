@@ -49,7 +49,7 @@
         scene.add(cube);
 
         // Make a renderer that fills the screen
-        let renderer = new THREE.WebGLRenderer({antialias: true});
+        let renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
         // Turn on VR support
