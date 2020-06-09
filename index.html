@@ -76,6 +76,10 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         }
 
+        var controller = renderer.xr.getController( 0 );
+        controller.userData.skipFrames = 0;
+        scene.add( controller );
+
         function render(time) {
             // Rotate the cube
             cube.rotation.y = time / 1000;
