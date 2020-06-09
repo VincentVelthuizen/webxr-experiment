@@ -32,9 +32,12 @@
         scene.add(camera);
 
         // Add some lights
-        var light = new THREE.DirectionalLight(0xffffff,0.5);
-        light.position.set(1, 1, 1).normalize();
-        scene.add(light);
+        var light = new THREE.HemisphereLight( 0xffffff, 0xbbbbff, 1 );
+        light.position.set( 0, 1, 0 );
+        scene.add( light );
+        // var light = new THREE.DirectionalLight(0xffffff,0.5);
+        // light.position.set(1, 1, 1).normalize();
+        // scene.add(light);
         scene.add(new THREE.AmbientLight(0xffffff,0.5))
 
         // Make a red cube
