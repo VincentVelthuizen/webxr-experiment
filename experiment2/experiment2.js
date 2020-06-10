@@ -19,8 +19,8 @@ function init() {
     scene.add(new THREE.AmbientLight(0xffffff, 0.5))
 
     console.log("add text");
-    const text_loader = new TTFLoader()
-    text_loader.load("./font/Otsutome_font_ver3/OtsutomeFont_Ver3.ttf", data => {
+    const text_loader = new TTFLoader();
+    text_loader.load("../font/Otsutome_font_ver3/OtsutomeFont_Ver3.ttf", data => {
         const font = new THREE.FontLoader().parse(data)
         const geo = new THREE.TextBufferGeometry("MIW", { //"祝う"
             font: font,
@@ -46,7 +46,7 @@ function init() {
         new THREE.BoxBufferGeometry(1,1,1),
         new THREE.MeshLambertMaterial({color:'red'})
     );
-    cube.position.set(0, 1.5, -10);
+    cube.position.set(-2, 1.5, -10);
     scene.add(cube);
     arObjects.push(cube);
 
@@ -74,7 +74,6 @@ function init() {
 }
 
 function animate() {
-    console.log("animate")
     renderer.setAnimationLoop( render );
 }
 
