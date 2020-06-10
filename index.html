@@ -54,19 +54,24 @@
 
         const text_loader = new TTFLoader()
 
+        let characterArray = [];
+
         text_loader.load("./font/Otsutome_font_ver3/OtsutomeFont_Ver3.ttf", data => {
             const font = new THREE.FontLoader().parse(data)
-            const geo = new THREE.TextBufferGeometry("祝う", {
+            const geo = new THREE.TextBufferGeometry("MIW", { //"祝う"
                 font: font,
                 size: 1,
                 height: .5
             });
-            const mesh = new THREE.Mesh(
+
+            let mesh = new THREE.Mesh(
                 geo,
-                new THREE.MeshLambertMaterial({color: 'red'})
+                new THREE.MeshLambertMaterial({color: 'green'})
             );
             mesh.position.set(0, 1.5, -5);
+
             scene.add(mesh);
+            characterArray.push(mesh);
         });
 
         // Make a renderer that fills the screen
@@ -103,9 +108,18 @@
 
         function render(time) {
             // Rotate the cube
-            cube.rotation.y = time / 1000;
+
+            characterArray.forEach((item, index) => updateHeight(item, time));
+
             // Draw everything
             renderer.render(scene, camera);
+        }
+
+        function updateHeight(character, time) {
+            character.translateY(-.000001 * time);
+            if (character.getWorldPosition().y < -2) { // 0 is vloer
+                character.translateY(4); // 3 is plafond (in ~meters)
+            }
         }
     </script>
 </body>
