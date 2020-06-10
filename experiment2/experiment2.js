@@ -22,7 +22,8 @@ function init() {
     const text_loader = new TTFLoader();
     text_loader.load("../font/Otsutome_font_ver3/OtsutomeFont_Ver3.ttf", data => {
         const font = new THREE.FontLoader().parse(data)
-        const geo = new THREE.TextBufferGeometry("MIW", { //"祝う"
+
+        let geo = new THREE.TextBufferGeometry("MIW", { //"祝う"
             font: font,
             size: 1,
             height: .25,
@@ -40,13 +41,31 @@ function init() {
         console.log("adding font mesh")
         scene.add(mesh);
         arObjects.push(mesh);
+
+        geo = new THREE.TextBufferGeometry("祝う", { //"祝う"
+            font: font,
+            size: 1,
+            height: .25,
+            bevelEnabled: true,
+            bevelThickness: 0.2,
+            bevelSize: 0.05,
+        });
+
+        mesh = new THREE.Mesh(
+            geo,
+            new THREE.MeshLambertMaterial({color: 'green'})
+        );
+        mesh.position.set(4, 1.5, -15);
+
+        scene.add(mesh);
+        arObjects.push(mesh);
     });
 
     let cube = new THREE.Mesh(
         new THREE.BoxBufferGeometry(1,1,1),
         new THREE.MeshLambertMaterial({color:'red'})
     );
-    cube.position.set(-2, 1.5, -15);
+    cube.position.set(-4, 1.5, -15);
     scene.add(cube);
     arObjects.push(cube);
 
