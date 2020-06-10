@@ -3,6 +3,7 @@ import { TTFLoader } from 'https://unpkg.com/three/examples/jsm/loaders/TTFLoade
 
 let arDisplay, renderer, scene, arView, camera, arControls;
 let arObjects = [];
+let previousTime = 0;
 
 function init(display) {
     arDisplay = display;
@@ -81,7 +82,9 @@ function animate() {
 function render(time) {
     // arControls.update();
 
-    arObjects.forEach((item, index) => updateHeight(item, time));
+    let elapsed = time - previousTime;
+    previousTime = time;
+    arObjects.forEach((item, index) => updateHeight(item, elapsed));
     // arView.render();
     // renderer.clearDepth();
     renderer.render(scene, camera);
@@ -92,10 +95,11 @@ THREE.ARUtils.getARDisplay().then(init);
 
 
 function updateHeight(arObject, time) {
-    arObject.translateY(-.000001 * time);
+    arObject.translateY(-.001 * time);
+    arObject.rotateY(0.001 * time);
     let position = arObject.getWorldPosition(new THREE.Vector3());
 
-    if (position.y < -2) {
-        arObject.translateY(4);
+    if (position.y < -5) {
+        arObject.translateY(10);
     }
 }
