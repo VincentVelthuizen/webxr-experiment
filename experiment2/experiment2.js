@@ -5,8 +5,7 @@ let arDisplay, renderer, scene, arView, camera, arControls;
 let arObjects = [];
 let previousTime = 0;
 
-function init(display) {
-    arDisplay = display;
+function init() {
 
     console.log("setup scene");
     // setup scene
@@ -90,7 +89,7 @@ function render(time) {
     renderer.render(scene, camera);
 }
 
-THREE.ARUtils.getARDisplay().then(init);
+init();
 
 
 
