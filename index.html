@@ -21,7 +21,7 @@
         // import { VRButton } from 'https://unpkg.com/three/examples/jsm/webxr/VRButton.js';
         import { ARButton } from 'https://unpkg.com/three/examples/jsm/webxr/ARButton.js';
 
-        import { TTFLoader } from 'https://unpkg.com/three/examples/js/loaders/TTFLoader.js';
+        import { TTFLoader } from 'https://unpkg.com/three/examples/jsm/loaders/TTFLoader.js';
         import 'https://unpkg.com/three/examples/js/libs/opentype.min.js';
 
         // Make a new scene
@@ -49,9 +49,11 @@
             new THREE.MeshLambertMaterial({color:'red'})
         );
         cube.position.set(0, 1.5, -10);
-        scene.add(cube);
+        // scene.add(cube);
 
-        const text_loader = new THREE.TTFLoader()
+
+        const text_loader = new TTFLoader()
+
         text_loader.load("./font/Otsutome_font_ver3/OtsutomeFont_Ver3.ttf", data => {
             const font = new THREE.FontLoader().parse(data)
             const geo = new THREE.TextBufferGeometry("祝う", {
@@ -61,9 +63,9 @@
             });
             const mesh = new THREE.Mesh(
                 geo,
-                new THEE.MeshLamberMaterial({color: 'blue'})
+                new THREE.MeshLambertMaterial({color: 'red'})
             );
-            mesh.position.set(3, 1.5, -5);
+            mesh.position.set(0, 1.5, -5);
             scene.add(mesh);
         });
 
