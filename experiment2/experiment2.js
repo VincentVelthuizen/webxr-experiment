@@ -35,7 +35,7 @@ function init() {
             geo,
             new THREE.MeshLambertMaterial({color: 'green'})
         );
-        mesh.position.set(0, 1.5, -7);
+        mesh.position.set(0, 1.5, -15);
 
         console.log("adding font mesh")
         scene.add(mesh);
@@ -46,7 +46,7 @@ function init() {
         new THREE.BoxBufferGeometry(1,1,1),
         new THREE.MeshLambertMaterial({color:'red'})
     );
-    cube.position.set(-2, 1.5, -10);
+    cube.position.set(-2, 1.5, -15);
     scene.add(cube);
     arObjects.push(cube);
 
