@@ -84,7 +84,6 @@ function init() {
     console.log("setup camera");
     camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
     arControls = renderer.xr.getController(0);
-    arControls.addEventListener( 'selectend', onSelectEnd );
     arControls.userData.skipFrames = 0;
     scene.add( arControls );
 
