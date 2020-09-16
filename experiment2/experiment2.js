@@ -121,7 +121,7 @@ function render(time) {
     // renderer.clearDepth();
     renderer.render(scene, camera);
 
-    if (time % 100 == 0) {
+    if (time % 10 == 0) {
         console.log("adding a cube")
         onSelectEnd();
     }
@@ -149,7 +149,7 @@ function onSelectEnd() {
         new THREE.BoxBufferGeometry(1,1,1),
         new THREE.MeshLambertMaterial({color:'blue'})
     );
-    cube.position.set(cube.position.set(-4, 1.5, -15););
+    cube.position.set(-4, 1.5, -15);
     scene.add(cube);
     arObjects.push(cube);
 }
