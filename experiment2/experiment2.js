@@ -84,6 +84,7 @@ function init() {
     console.log("setup camera");
     camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
     arControls = renderer.xr.getController(0);
+    arControls.addEventListener( 'selectend', onSelectEnd );
     arControls.userData.skipFrames = 0;
     scene.add( arControls );
 
@@ -119,4 +120,17 @@ function updateHeight(arObject, time) {
     if (position.y < -5) {
         arObject.translateY(10);
     }
+}
+
+function onSelectEnd() {
+    var cursor = new THREE.Vector3();
+    cursor.set( 0, 0, - 0.2 ).applyMatrix4( controller.matrixWorld );
+
+    let cube = new THREE.Mesh(
+        new THREE.BoxBufferGeometry(1,1,1),
+        new THREE.MeshLambertMaterial({color:'red'})
+    );
+    cube.position.set(cursor);
+    scene.add(cube);
+    arObjects.push(cube);
 }
