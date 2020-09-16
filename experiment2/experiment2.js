@@ -124,7 +124,7 @@ function updateHeight(arObject, time) {
 
 function onSelectEnd() {
     var cursor = new THREE.Vector3();
-    cursor.set( 0, 0, - 0.2 ).applyMatrix4( controller.matrixWorld );
+    cursor.set( 0, 0, - 0.2 ).applyMatrix4( arControls.matrixWorld );
 
     let cube = new THREE.Mesh(
         new THREE.BoxBufferGeometry(1,1,1),
