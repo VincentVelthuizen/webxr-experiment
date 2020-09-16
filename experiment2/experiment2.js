@@ -77,21 +77,6 @@ function init() {
     renderer.xr.enabled = true;
     document.body.appendChild(renderer.domElement);
 
-    function onSelectEnd() {
-        console.log("adding a cube")
-
-        var cursor = new THREE.Vector3();
-        cursor.set( 0, 0, -15 ).applyMatrix4( arControls.matrixWorld );
-
-        let cube = new THREE.Mesh(
-            new THREE.BoxBufferGeometry(1,1,1),
-            new THREE.MeshLambertMaterial({color:'red'})
-        );
-        cube.position.set(cursor);
-        scene.add(cube);
-        arObjects.push(cube);
-    }
-
     console.log("setup view");
     // arView = new THREE.ARView(arDisplay, renderer);
     document.body.appendChild(ARButton.createButton(renderer));
@@ -123,8 +108,8 @@ function render(time) {
     renderer.render(scene, camera);
 
     if (time % 10 == 0) {
-        //console.log("adding a cube")
-       //onSelectEnd();
+        console.log("adding a cube")
+        addCube();
     }
 }
 
@@ -141,7 +126,7 @@ function updateHeight(arObject, time) {
     }
 }
 
-function onSelectEnd() {
+function addCube() {
 
     var cursor = new THREE.Vector3();
     cursor.set( 0, 0, - 0.2 ).applyMatrix4( arControls.matrixWorld );
@@ -150,7 +135,8 @@ function onSelectEnd() {
         new THREE.BoxBufferGeometry(1,1,1),
         new THREE.MeshLambertMaterial({color:'blue'})
     );
-    cube.position.set(-4, 1.5, -15);
+    let randomX = (Math.random() * 30) - 15;
+    cube.position.set(randomX, 1.5, -15);
     scene.add(cube);
     arObjects.push(cube);
 }
