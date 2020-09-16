@@ -79,11 +79,11 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     console.log("setup view");
-    // arView = new THREE.ARView(arDisplay, renderer);
+    arView = new THREE.ARView(arDisplay, renderer);
     document.body.appendChild(ARButton.createButton(renderer));
-    // camera = new THREE.ARPerspectiveCamera(arDisplay, 60, window.innerWidth / window.innerHeight, arDisplay.depthNear, arDisplay.depthFar);
+    camera = new THREE.ARPerspectiveCamera(arDisplay, 60, window.innerWidth / window.innerHeight, arDisplay.depthNear, arDisplay.depthFar);
     console.log("setup camera");
-    camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
+    // camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
     arControls = renderer.xr.getController(0);
     arControls.userData.skipFrames = 0;
     scene.add( arControls );
@@ -100,7 +100,7 @@ function animate() {
 }
 
 function render(time) {
-    // arControls.update();
+    arControls.update();
 
     let elapsed = time - previousTime;
     previousTime = time;
