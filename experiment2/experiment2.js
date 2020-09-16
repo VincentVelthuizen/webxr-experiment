@@ -149,7 +149,7 @@ function onSelectEnd() {
         new THREE.BoxBufferGeometry(1,1,1),
         new THREE.MeshLambertMaterial({color:'blue'})
     );
-    cube.position.set(cursor);
+    cube.position.set(cube.position.set(-4, 1.5, -15););
     scene.add(cube);
     arObjects.push(cube);
 }
