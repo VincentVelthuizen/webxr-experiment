@@ -77,6 +77,19 @@ function init() {
     renderer.xr.enabled = true;
     document.body.appendChild(renderer.domElement);
 
+    function onSelectEnd() {
+        var cursor = new THREE.Vector3();
+        cursor.set( 0, 0, - 0.2 ).applyMatrix4( arControls.matrixWorld );
+
+        let cube = new THREE.Mesh(
+            new THREE.BoxBufferGeometry(1,1,1),
+            new THREE.MeshLambertMaterial({color:'red'})
+        );
+        cube.position.set(cursor);
+        scene.add(cube);
+        arObjects.push(cube);
+    }
+
     console.log("setup view");
     // arView = new THREE.ARView(arDisplay, renderer);
     document.body.appendChild(ARButton.createButton(renderer));
@@ -111,7 +124,6 @@ function render(time) {
 init();
 
 
-
 function updateHeight(arObject, time) {
     arObject.translateY(-.001 * time);
     arObject.rotateY(0.001 * time);
@@ -120,17 +132,4 @@ function updateHeight(arObject, time) {
     if (position.y < -5) {
         arObject.translateY(10);
     }
-}
-
-function onSelectEnd() {
-    var cursor = new THREE.Vector3();
-    cursor.set( 0, 0, - 0.2 ).applyMatrix4( arControls.matrixWorld );
-
-    let cube = new THREE.Mesh(
-        new THREE.BoxBufferGeometry(1,1,1),
-        new THREE.MeshLambertMaterial({color:'red'})
-    );
-    cube.position.set(cursor);
-    scene.add(cube);
-    arObjects.push(cube);
 }
