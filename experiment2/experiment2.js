@@ -78,6 +78,7 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     function onSelectEnd() {
+
         var cursor = new THREE.Vector3();
         cursor.set( 0, 0, - 0.2 ).applyMatrix4( arControls.matrixWorld );
 
@@ -111,7 +112,7 @@ function animate() {
 }
 
 function render(time) {
-    arControls.update();
+    //arControls.update();
 
     let elapsed = time - previousTime;
     previousTime = time;
@@ -119,6 +120,10 @@ function render(time) {
     // arView.render();
     // renderer.clearDepth();
     renderer.render(scene, camera);
+
+    if (time % 10000 == 0) {
+        onSelectEnd();
+    }
 }
 
 init();
@@ -132,4 +137,18 @@ function updateHeight(arObject, time) {
     if (position.y < -5) {
         arObject.translateY(10);
     }
+}
+
+function onSelectEnd() {
+
+    var cursor = new THREE.Vector3();
+    cursor.set( 0, 0, - 0.2 ).applyMatrix4( arControls.matrixWorld );
+
+    let cube = new THREE.Mesh(
+        new THREE.BoxBufferGeometry(1,1,1),
+        new THREE.MeshLambertMaterial({color:'red'})
+    );
+    cube.position.set(cursor);
+    scene.add(cube);
+    arObjects.push(cube);
 }
