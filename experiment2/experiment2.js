@@ -111,7 +111,7 @@ function animate() {
 }
 
 function render(time) {
-    // arControls.update();
+    arControls.update();
 
     let elapsed = time - previousTime;
     previousTime = time;
