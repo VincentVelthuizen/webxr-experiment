@@ -1,5 +1,4 @@
 import { ARButton } from 'https://unpkg.com/three/examples/jsm/webxr/ARButton.js';
-// import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
 import { TTFLoader } from 'https://unpkg.com/three/examples/jsm/loaders/TTFLoader.js';
 
 let arDisplay, renderer, scene, arView, camera, arControls;
@@ -79,16 +78,14 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     console.log("setup view");
-    arView = new THREE.ARView(arDisplay, renderer);
+    // arView = new THREE.ARView(arDisplay, renderer);
     document.body.appendChild(ARButton.createButton(renderer));
-    camera = new THREE.ARPerspectiveCamera(arDisplay, 60, window.innerWidth / window.innerHeight, arDisplay.depthNear, arDisplay.depthFar);
+    // camera = new THREE.ARPerspectiveCamera(arDisplay, 60, window.innerWidth / window.innerHeight, arDisplay.depthNear, arDisplay.depthFar);
     console.log("setup camera");
-    // camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
+    camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
     arControls = renderer.xr.getController(0);
     arControls.userData.skipFrames = 0;
     scene.add( arControls );
-
-    window.addEventListener('resize', onWindowResize, false);
 
     console.log("animate!")
     animate();
@@ -100,7 +97,7 @@ function animate() {
 }
 
 function render(time) {
-    arControls.update();
+    // arControls.update();
 
     let elapsed = time - previousTime;
     previousTime = time;
@@ -112,11 +109,7 @@ function render(time) {
 
 init();
 
-function onWindowResize(){
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-}
+
 
 function updateHeight(arObject, time) {
     arObject.translateY(-.001 * time);
