@@ -78,9 +78,10 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     function onSelectEnd() {
+        console.log("adding a cube")
 
         var cursor = new THREE.Vector3();
-        cursor.set( 0, 0, - 0.2 ).applyMatrix4( arControls.matrixWorld );
+        cursor.set( 0, 0, -15 ).applyMatrix4( arControls.matrixWorld );
 
         let cube = new THREE.Mesh(
             new THREE.BoxBufferGeometry(1,1,1),
@@ -122,8 +123,8 @@ function render(time) {
     renderer.render(scene, camera);
 
     if (time % 10 == 0) {
-        console.log("adding a cube")
-        onSelectEnd();
+        //console.log("adding a cube")
+       //onSelectEnd();
     }
 }
 
