@@ -1,4 +1,5 @@
 import { ARButton } from 'https://unpkg.com/three/examples/jsm/webxr/ARButton.js';
+// import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
 import { TTFLoader } from 'https://unpkg.com/three/examples/jsm/loaders/TTFLoader.js';
 
 let arDisplay, renderer, scene, arView, camera, arControls;
@@ -87,6 +88,8 @@ function init() {
     arControls.userData.skipFrames = 0;
     scene.add( arControls );
 
+    window.addEventListener('resize', onWindowResize, false);
+
     console.log("animate!")
     animate();
     console.log("animating?")
@@ -109,7 +112,11 @@ function render(time) {
 
 init();
 
-
+function onWindowResize(){
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
 
 function updateHeight(arObject, time) {
     arObject.translateY(-.001 * time);
